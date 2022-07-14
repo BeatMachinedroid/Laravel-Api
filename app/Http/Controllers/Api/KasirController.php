@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
+use App\Models\Kasir;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class KasirController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menu = Menu::all()
-        ->join('kategori', 'menu.kategori_id', '=', 'kategori.id');
-        return response()->json([
-            'status' => true,
-            'data' => $menu
-        ],200);
+        $kasirs = Kasir::all();
+        return response()->json($kasirs);
     }
 
     /**
@@ -30,7 +26,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,25 +37,17 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $menu = new Menu;
-        $menu->nama = $request->nama;
-        $menu->kategori_id = $request->kategori_id;
-        $menu->harga = $request->harga;
-        $menu->save();
-        return response()->json([
-            'status' => true,
-            'message' => 'Menu created successfully',
-            'data' => $menu
-        ],200);
+        $kasir = Kasir::create($request->all());
+        return response()->json($kasir);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Kasir  $kasir
      * @return \Illuminate\Http\Response
      */
-    public function show(Menu $menu)
+    public function show(Kasir $kasir)
     {
         //
     }
@@ -67,40 +55,34 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Kasir  $kasir
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit(Kasir $kasir)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Kasir  $kasir
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, Kasir $kasir)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Kasir  $kasir
      * @return \Illuminate\Http\Response
      */
-    public function delete(Menu $menu)
+    public function destroy(Kasir $kasir)
     {
-        $menu->delete();
-        return response()->json([
-            'status' => true,
-            'message' => 'Menu deleted successfully'
-        ],200);
+        //
     }
-
-
 }
